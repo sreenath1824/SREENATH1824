@@ -1,0 +1,23 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import cmath as cm
+x=input("Enter a signal : ")
+l=len(x)
+n=np.linspace(-(l-2)/2,l/2,l)
+j=cm.sqrt(-1)
+w=np.linspace(-np.pi,np.pi,1000)
+X_W=[]
+for m in range(1000):
+	s=0
+	for t in range (l):
+		s+=(x[t]*np.exp(-1*w[m]*j*(t-l/2)))
+	X_W.append(s)
+plt.subplot(221)
+plt.stem(n,x)
+plt.subplot(223)
+plt.plot(w,np.abs(X_W))
+plt.subplot(224)
+plt.plot(w,np.angle(X_W))
+plt.subplot(222)
+plt.plot(w,X_W)
+plt.show()

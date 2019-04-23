@@ -1,0 +1,21 @@
+import scipy.io.wavfile as wav
+import matplotlib.pyplot as plt
+import numpy as np
+t=np.linspace(-0.001,0.001,1024)
+f=input("Enter frequency : ")
+x=np.sin(2*np.pi*f*t)
+winl=64
+nwin=int(len(t)/winl)
+for i in range(nwin):
+	n=np.linspace(t[i*nwin],t[(i+1)*nwin],nwin)
+	y=np.sin(2*np.pi*f*n)
+	Y=np.fft.fft(y,64)
+	YM=np.abs(Y)
+	plt.subplot(211)
+	plt.plot(t,x)
+	plt.plot(n,y)
+	plt.subplot(212)
+	plt.plot(YM)
+	plt.draw()
+	plt.pause(1)
+	plt.clf()

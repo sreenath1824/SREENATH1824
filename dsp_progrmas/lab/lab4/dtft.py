@@ -1,0 +1,22 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import cmath as cm
+f=input("Enter frequency :")
+fs=input("Enter sampling frequency :")
+p=np.linspace(-100,100,200)
+x=np.sin(2*np.pi*(f*1.0/fs)*p)
+l=len(x)
+j=cm.sqrt(-1)
+w=np.linspace(-np.pi,np.pi,10000)
+X_W=0
+for t in range(l):
+	X_W+=(x[t]*np.exp(-1*w*j*(t-1-l/2)))
+plt.subplot(411)
+plt.plot(p,x)
+plt.subplot(413)
+plt.plot(w,np.abs(X_W))
+plt.subplot(414)
+plt.plot(w,np.angle(X_W))
+plt.subplot(412)
+plt.plot(w,X_W)
+plt.show()
